@@ -10,13 +10,14 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 DROP TABLE IF EXISTS `Users` ;
 
 CREATE TABLE IF NOT EXISTS `Users` (
-  `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(255) NOT NULL,
   `last_name` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NULL,
   `created_at` DATE NULL,
   `password` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`user_id`))
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -26,12 +27,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `Playlists` ;
 
 CREATE TABLE IF NOT EXISTS `Playlists` (
-  `playlist_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `playlist_id` INT NOT NULL AUTO_INCREMENT,
   `created_at` DATE NULL,
   `title` VARCHAR(2555) NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`playlist_id`),
   INDEX `fk_playlist_user_idx` (`user_id` ASC) VISIBLE,
+  UNIQUE INDEX `playlist_id_UNIQUE` (`playlist_id` ASC) VISIBLE,
   CONSTRAINT `fk_playlist_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `Users` (`user_id`)
@@ -46,10 +48,11 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `Albums` ;
 
 CREATE TABLE IF NOT EXISTS `Albums` (
-  `album_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `album_id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `release_date` DATE NULL,
-  PRIMARY KEY (`album_id`))
+  PRIMARY KEY (`album_id`),
+  UNIQUE INDEX `album_id_UNIQUE` (`album_id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -59,13 +62,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `Songs` ;
 
 CREATE TABLE IF NOT EXISTS `Songs` (
-  `song_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `song_id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `length` TIME NULL,
   `release_date` DATE NULL,
   `album_id` INT NULL,
   PRIMARY KEY (`song_id`),
   INDEX `fk_song_album1_idx` (`album_id` ASC) VISIBLE,
+  UNIQUE INDEX `song_id_UNIQUE` (`song_id` ASC) VISIBLE,
   CONSTRAINT `fk_song_album1`
     FOREIGN KEY (`album_id`)
     REFERENCES `Albums` (`album_id`)
@@ -80,12 +84,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `Playlists_Songs` ;
 
 CREATE TABLE IF NOT EXISTS `Playlists_Songs` (
-  `playlist_song_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `playlist_song_id` INT NOT NULL AUTO_INCREMENT,
   `playlist_id` INT NOT NULL,
   `song_id` INT NOT NULL,
   PRIMARY KEY (`playlist_song_id`),
   INDEX `fk_playlist_song_playlist1_idx` (`playlist_id` ASC) VISIBLE,
   INDEX `fk_playlist_song_song1_idx` (`song_id` ASC) VISIBLE,
+  UNIQUE INDEX `playlist_song_id_UNIQUE` (`playlist_song_id` ASC) VISIBLE,
   CONSTRAINT `fk_playlist_song_playlist1`
     FOREIGN KEY (`playlist_id`)
     REFERENCES `Playlists` (`playlist_id`)
@@ -105,12 +110,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `Artists` ;
 
 CREATE TABLE IF NOT EXISTS `Artists` (
-  `artist_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `artist_id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `bio` VARCHAR(255) NULL,
   `genre` VARCHAR(255) NULL,
   `label` VARCHAR(255) NULL,
-  PRIMARY KEY (`artist_id`))
+  PRIMARY KEY (`artist_id`),
+  UNIQUE INDEX `artist_id_UNIQUE` (`artist_id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -120,12 +126,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `Artists_Songs` ;
 
 CREATE TABLE IF NOT EXISTS `Artists_Songs` (
-  `artist_song_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `artist_song_id` INT NOT NULL AUTO_INCREMENT,
   `artist_id` INT NOT NULL,
   `song_id` INT NOT NULL,
   PRIMARY KEY (`artist_song_id`),
   INDEX `fk_Artists_Songs_Artists1_idx` (`artist_id` ASC) VISIBLE,
   INDEX `fk_Artists_Songs_Songs1_idx` (`song_id` ASC) VISIBLE,
+  UNIQUE INDEX `artist_song_id_UNIQUE` (`artist_song_id` ASC) VISIBLE,
   CONSTRAINT `fk_Artists_Songs_Artists1`
     FOREIGN KEY (`artist_id`)
     REFERENCES `Artists` (`artist_id`)
@@ -138,10 +145,6 @@ CREATE TABLE IF NOT EXISTS `Artists_Songs` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
 -- EXAMPLE VALUES
@@ -335,7 +338,6 @@ select * from Playlists_Songs;
 select * from Songs;
 select * from Artists_Songs;
 select * from Artists;
-select * from Artists_Albums;
 select * from Albums;
 -- -----------------------------------------------------
 -- TEST QUERIES
