@@ -1,3 +1,6 @@
+# TEAM CAT GROUP 126
+# MEMBERS: Michelle Myers & Jacob Moore
+
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
