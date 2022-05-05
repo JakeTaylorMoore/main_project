@@ -1,0 +1,21 @@
+nav {
+
+        text-align: center;
+        background: #0B3948;
+        padding: 1%;
+
+}
+ul {
+    list-style-type: none;
+
+}
+
+li {
+    display: inline;
+    margin-left: 5%;
+
+}
+
+li a {
+    text-decoration: none;
+}
