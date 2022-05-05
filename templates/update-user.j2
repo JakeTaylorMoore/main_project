@@ -1,0 +1,37 @@
+{%  extends 'main.j2' %}
+
+{% block header %}
+    <h1>{% block title %} Update User {% endblock %}</h1>
+{%  endblock %}
+
+{%  block content %}
+    <table>
+   <form method="POST" id="UpdateUser">
+{#   <fieldset class="fields">#}
+      <input type="hidden" name="user_id" id="updateUserID" value="1">
+
+       <tr>
+           <th><label>ID:</label></th>
+           <th><label> First Name </label></th>
+           <th><label> Last Name </label></th>
+           <th><label>Email</label></th>
+           <th><label>Created At:</label></th>
+           <th><label>password</label></th>
+           </tr>
+
+       <tr>
+           <td>1</td>
+           <td><input type="text" name="fname" value="Brad"></td>
+           <td><input type="text" name="lname" value="Pitt"></td>
+           <td><input type="text" name="email" value="brad@example.com"></td>
+           <td><input type="text" name="created_at" value="2020-05-30"></td>
+           <td><input type="password" name="password" value="MattDamon1!"></td>
+
+
+{#   </fieldset>#}
+   </form>
+
+    </table>
+
+        <button><a href="{{ url_for('users') }}">Update User</a></button>
+{%  endblock %}

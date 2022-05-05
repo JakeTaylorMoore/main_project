@@ -1,0 +1,32 @@
+{%  extends 'main.j2' %}
+
+{% block header %}
+    <h1>{% block title %} Add User {% endblock %}</h1>
+{%  endblock %}
+
+{%  block content %}
+    <table>
+        <form method="POST" id="addUser">
+       <tr>
+
+           <th><label> First Name </label></th>
+           <th><label> Last Name </label></th>
+           <th><label>Email</label></th>
+           <th><label>Created At:</label></th>
+           <th><label>password</label></th>
+           </tr>
+
+        <tr>
+           <td><input type="text" name="fname" placeholder="first name"></td>
+           <td><input type="text" name="lname" placeholder="last name"></td>
+           <td><input type="text" name="email" placeholder="email"></td>
+           <td><input type="text" name="created_at"></td>
+           <td><input type="password" name="password" placeholder="create pass"></td>
+        </tr>
+
+
+       </form>
+    </table>
+
+    <button><a href="{{ url_for('users') }}">Add User</a></button>
+{%  endblock %}

@@ -1,0 +1,33 @@
+{%  extends 'main.j2' %}
+
+{% block header %}
+    <h1>{% block title %} Delete User {% endblock %}</h1>
+{%  endblock %}
+
+{%  block content %}
+    <h2>Confirm Deletion</h2>
+    <table>
+        <form method="POST" id="deleteUser">
+       <tr>
+
+           <th><label> First Name </label></th>
+           <th><label> Last Name </label></th>
+           <th><label>Email</label></th>
+           <th><label>Created At:</label></th>
+           <th><label>password</label></th>
+           </tr>
+
+              <tr>
+             <td>Brad</td>
+          <td>Pitt</td>
+          <td>brad@example.com</td>
+          <td>2020-05-30</td>
+          <td>**********</td>
+              </tr>
+        </form>
+    </table>
+
+
+        <button><a href="{{ url_for('users') }}">Delete User</a></button>
+
+{%  endblock %}

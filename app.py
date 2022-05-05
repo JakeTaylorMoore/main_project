@@ -37,6 +37,22 @@ def users():
     return render_template("users.j2")
 
 
+@app.route('/add-users')
+def add_users():
+    return render_template("add-user.j2")
+
+
+@app.route('/update-user')
+def update_user():
+    return render_template("update-user.j2")
+
+
+@app.route('/delete-user')
+def delete_user():
+    return render_template("delete-user.j2")
+
+
+
 @app.route('/albums')
 def albums():
     return render_template("albums.j2")

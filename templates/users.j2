@@ -5,5 +5,79 @@
 {%  endblock %}
 
 {%  block content %}
-{#    add content later#}
+
+
+      <table>
+{#    table header#}
+    <tr>
+
+           <th>First Name</th>
+           <th>Last Name</th>
+           <th>Email</th>
+           <th>Created At</th>
+           <th>password</th>
+           <th></th>
+           <th></th>
+    </tr>
+
+{#      table data#}
+
+      <tr>
+          <td>Brad</td>
+          <td>Pitt</td>
+          <td>brad@example.com</td>
+          <td>2020-05-30</td>
+          <td>**********</td>
+          <td><a href="{{ url_for('update_user') }}">Edit</a></td>
+          <td><a href="{{ url_for('delete_artist') }}">Delete</a></td>
+      </tr>
+
+
+          <tr>
+          <td>Dejounte</td>
+          <td>Murray</td>
+          <td>dj@example.com</td>
+          <td>2018-11-20</td>
+          <td>**********</td>
+          <td><a href="{{ url_for('update_user') }}">Edit</a></td>
+          <td><a href="{{ url_for('delete_artist') }}">Delete</a></td>
+      </tr>
+
+
+          <tr>
+          <td>Leonard</td>
+          <td>Moore</td>
+          <td>leonard@example.com</td>
+          <td>2022-01-01</td>
+          <td>**********</td>
+          <td><a href="{{ url_for('update_user') }}">Edit</a></td>
+          <td><a href="{{ url_for('delete_artist') }}">Delete</a></td>
+      </tr>
+
+
+          <tr>
+          <td>Robert</td>
+          <td>Bobbie</td>
+          <td>robob@example.com</td>
+          <td>2021-07-04</td>
+          <td>**********</td>
+          <td><a href="{{ url_for('update_user') }}">Edit</a></td>
+          <td><a href="{{ url_for('delete_artist') }}">Delete</a></td>
+      </tr>
+
+                <tr>
+          <td>Tom</td>
+          <td>Morello</td>
+          <td>tmo@example.com</td>
+          <td>2019-02-04</td>
+          <td>**********</td>
+          <td><a href="{{ url_for('update_user') }}">Edit</a></td>
+          <td><a href="{{ url_for('delete_artist') }}">Delete</a></td>
+      </tr>
+
+      </table>
+
+        <button><a href="{{ url_for('add_users') }}">Add User</a></button>
+
+
 {%  endblock %}
