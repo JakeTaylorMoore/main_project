@@ -52,10 +52,44 @@ def delete_user():
     return render_template("delete-user.j2")
 
 
-
 @app.route('/albums')
 def albums():
     return render_template("albums.j2")
+
+
+@app.route('/add-album')
+def add_album():
+    return render_template('add-album.j2')
+
+
+@app.route('/update-album')
+def update_album():
+    return render_template('update-album.j2')
+
+
+@app.route('/delete-album')
+def delete_album():
+    return render_template('delete-album.j2')
+
+
+@app.route('/songs')
+def songs():
+    return render_template("songs.j2")
+
+
+@app.route('/add-song')
+def add_song():
+    return render_template("add-song.j2")
+
+
+@app.route('/update-song')
+def update_song():
+    return render_template("update-song.j2")
+
+
+@app.route('/delete-song')
+def delete_song():
+    return render_template("delete-song.j2")
 
 
 @app.route('/playlists')

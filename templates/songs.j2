@@ -1,0 +1,68 @@
+{%  extends 'main.j2' %}
+
+{% block header %}
+    <h1>{% block title %} Songs {% endblock %}</h1>
+{%  endblock %}
+
+{%  block content %}
+
+    <table>
+{#    table header#}
+    <tr>
+        <th>Song ID</th>
+        <th>title</th>
+        <th>length</th>
+        <th>release date</th>
+        <th>Album ID</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+
+{#    table data#}
+    <tr>
+        <td>1</td>
+        <td>Generation</td>
+        <td>3:03</td>
+        <td>2008-02-12</td>
+        <td>3</td>
+        <td><a href="{{ url_for('update_song') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_song') }}">Delete</a></td>
+    </tr>
+
+
+        <tr>
+        <td>2</td>
+        <td>Your Love Is a Lie</td>
+        <td>3:42</td>
+        <td>2008-02-12</td>
+        <td>3</td>
+        <td><a href="{{ url_for('update_song') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_song') }}">Delete</a></td>
+    </tr>
+
+        <tr>
+        <td>3</td>
+        <td>Fireflies</td>
+        <td>3:48</td>
+        <td>2009-07-14</td>
+        <td>1</td>
+        <td><a href="{{ url_for('update_song') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_song') }}">Delete</a></td>
+    </tr>
+
+
+                <tr>
+        <td>4</td>
+        <td>Ice Is Workin' It</td>
+        <td>4:36</td>
+        <td>1990-09-03</td>
+        <td>2</td>
+        <td><a href="{{ url_for('update_song') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_song') }}">Delete</a></td>
+    </tr>
+
+    </table>
+
+        <button><a href="{{ url_for('add_song') }}">Add Song</a></button>
+{%  endblock %}

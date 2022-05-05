@@ -5,5 +5,53 @@
 {%  endblock %}
 
 {%  block content %}
-{#    add content later#}
+    <table>
+{#    table header#}
+    <tr>
+        <th>Playlist ID</th>
+        <th>User ID</th>
+        <th>Created At</th>
+        <th>Title</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    {#    table data#}
+    <tr>
+        <td>1</td>
+        <td>3</td>
+        <td>2022-10-03</td>
+        <td>Money Ball</td>
+        <td><a href="{{ url_for('update_album') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_album') }}">Delete</a></td>
+    </tr>
+
+        <tr>
+        <td>2</td>
+        <td>5</td>
+        <td>2022-05-06</td>
+        <td>Sleep Music</td>
+        <td><a href="{{ url_for('update_album') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_album') }}">Delete</a></td>
+    </tr>
+
+            <tr>
+        <td>3</td>
+        <td>4</td>
+        <td>2021-02-02</td>
+        <td>Rollin' Down Rodeo</td>
+        <td><a href="{{ url_for('update_album') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_album') }}">Delete</a></td>
+    </tr>
+
+        <tr>
+        <td>4</td>
+        <td>4</td>
+        <td>2021-02-01</td>
+        <td>Simple Plan Entire Discography</td>
+        <td><a href="{{ url_for('update_album') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_album') }}">Delete</a></td>
+    </tr>
+
+    </table>
 {%  endblock %}
