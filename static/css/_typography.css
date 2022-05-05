@@ -23,3 +23,7 @@ li {
 li a{
     color: #DEF4C6;
 }
+
+li a:hover {
+    color: #0ca4a5;
+}

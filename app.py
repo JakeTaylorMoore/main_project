@@ -46,6 +46,7 @@ def albums():
 def playlists():
     return render_template("playlists.j2")
 
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8828))
     app.run(port=port, debug=True)
