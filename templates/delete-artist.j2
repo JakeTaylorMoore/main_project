@@ -5,5 +5,27 @@
 {%  endblock %}
 
 {%  block content %}
-    #add content later
+    <h2>Confirm Deletion</h2>
+    <table>
+        <form method="POST" id="addPlanet">
+       <tr>
+
+           <th><label> Title:</label></th>
+           <th><label>Bio</label></th>
+           <th><label>Genre</label></th>
+           <th><label>Label</label></th>
+           </tr>
+
+              <tr>
+        <td>Aerosmith</td>
+        <td>Aerosmith is an american rock band ...</td>
+        <td>Hard Rock</td>
+        <td>Columbia</td>
+              </tr>
+        </form>
+    </table>
+
+
+        <button><a href="{{ url_for('artists') }}">Delete Artist</a></button>
+
 {%  endblock %}
