@@ -1,0 +1,21 @@
+button {
+    background: #fbaf00;
+    color: #0B3948;
+    border: none;
+    font-family: pirulen,sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: .5%;
+    margin-left: 80%;
+    margin-top: 1%;
+}
+
+
+button a {
+    text-decoration: none;
+    color: #0B3948;
+}
+
+button a:hover {
+    color: #0ca4a5;
+}

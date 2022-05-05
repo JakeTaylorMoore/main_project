@@ -10,6 +10,12 @@ h1 {
     font-size: 5vmin;
 }
 
+h2 {
+    color: #0B3948;
+    text-align: center;
+    font-size: 2vmin;
+}
+
 p {
     color: #DEF4C6;
 }
@@ -26,4 +32,12 @@ li a{
 
 li a:hover {
     color: #0ca4a5;
+}
+
+td a {
+    color: #fbaf00;
+}
+
+td a:hover {
+    color: #0B3948;
 }
