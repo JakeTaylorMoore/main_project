@@ -97,6 +97,21 @@ def playlists():
     return render_template("playlists.j2")
 
 
+@app.route('/add-playlist')
+def add_playlist():
+    return render_template("add-playlist.j2")
+
+
+@app.route('/update-playlist')
+def update_playlist():
+    return render_template("update-playlist.j2")
+
+
+@app.route("/delete-playlist")
+def delete_playlist():
+    return render_template("delete-playlist.j2")
+
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8828))
     app.run(port=port, debug=True)

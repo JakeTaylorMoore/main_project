@@ -20,6 +20,17 @@ input[type=password] {
 
 }
 
+input[type=date] {
+    background: #DEF4C6;
+    width: 40%;
+    padding: 2%;
+}
+
+input[type=number] {
+    background: #DEF4C6;
+    width: 10%;
+}
+
 
 
 select {
