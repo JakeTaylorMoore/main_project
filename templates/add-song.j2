@@ -5,5 +5,24 @@
 {%  endblock %}
 
 {%  block content %}
-{#    add content later#}
+   <table>
+        <form method="POST" id="addSong">
+            <tr>
+        <th>title</th>
+        <th>length</th>
+        <th>release date</th>
+</tr>
+
+            <tr>
+                <td><input type="text" name="title" placeholder="song title"></td>
+                <td><input type="number" name="number"> : <input type="number" name="number"></td>
+                <td><input type="date" name="date"></td>
+
+            </tr>
+
+
+        </form>
+   </table>
+
+            <button><a href="{{ url_for('songs') }}">Add Song</a></button>
 {%  endblock %}

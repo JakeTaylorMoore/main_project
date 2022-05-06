@@ -1,0 +1,25 @@
+{%  extends 'main.j2' %}
+
+{% block header %}
+    <h1>{% block title %} Update Playlist {% endblock %}</h1>
+{%  endblock %}
+
+{%  block content %}
+ <table>
+   <form method="POST" id="UpdatePlaylist">
+
+      <input type="hidden" name="playlist_id" id="updatePlaylistID" value="1">
+       <tr>
+       <th>Created At</th>
+       <th>Title</th>
+       </tr>
+
+       <tr>
+           <td><input type="date" name="date" value=2022-10-03</td>
+           <td><input type="text" name="title" value="Money Ball"></td>
+       </tr>
+
+   </form>
+ </table>
+                    <button><a href="{{ url_for('playlists') }}">Update Playlist</a></button>
+{%  endblock %}

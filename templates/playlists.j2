@@ -22,8 +22,8 @@
         <td>3</td>
         <td>2022-10-03</td>
         <td>Money Ball</td>
-        <td><a href="{{ url_for('update_album') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_album') }}">Delete</a></td>
+        <td><a href="{{ url_for('update_playlist') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_playlist') }}">Delete</a></td>
     </tr>
 
         <tr>
@@ -31,8 +31,8 @@
         <td>5</td>
         <td>2022-05-06</td>
         <td>Sleep Music</td>
-        <td><a href="{{ url_for('update_album') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_album') }}">Delete</a></td>
+        <td><a href="{{ url_for('update_playlist') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_playlist') }}">Delete</a></td>
     </tr>
 
             <tr>
@@ -40,8 +40,8 @@
         <td>4</td>
         <td>2021-02-02</td>
         <td>Rollin' Down Rodeo</td>
-        <td><a href="{{ url_for('update_album') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_album') }}">Delete</a></td>
+        <td><a href="{{ url_for('update_playlist') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_playlist') }}">Delete</a></td>
     </tr>
 
         <tr>
@@ -49,9 +49,11 @@
         <td>4</td>
         <td>2021-02-01</td>
         <td>Simple Plan Entire Discography</td>
-        <td><a href="{{ url_for('update_album') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_album') }}">Delete</a></td>
+        <td><a href="{{ url_for('update_playlist') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_playlist') }}">Delete</a></td>
     </tr>
 
     </table>
+
+            <button><a href="{{ url_for('add_playlist') }}">Add Playlist</a></button>
 {%  endblock %}

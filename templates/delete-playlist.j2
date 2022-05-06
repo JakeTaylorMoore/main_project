@@ -1,0 +1,24 @@
+{%  extends 'main.j2' %}
+
+{% block header %}
+    <h1>{% block title %} Delete Playlist {% endblock %}</h1>
+{%  endblock %}
+
+{%  block content %}
+<h2>Confirm Deletion</h2>
+    <table>
+        <form method="POST" id="deletePlaylist">
+            <tr>
+       <th>Created At</th>
+        <th>Title</th>
+            </tr>
+
+            <tr>
+                <td>2022-10-03</td>
+                <td>Money Ball</td>
+            </tr>
+        </form>
+    </table>
+
+                <button><a href="{{ url_for('playlists') }}">Delete Playlist</a></button>
+{%  endblock %}

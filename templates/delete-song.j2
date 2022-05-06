@@ -5,5 +5,23 @@
 {%  endblock %}
 
 {%  block content %}
-{#    add content later#}
+  <h2>Confirm Deletion</h2>
+    <table>
+        <form method="POST" id="deleteSong">
+            <tr>
+        <th>title</th>
+        <th>length</th>
+        <th>release date</th>
+            </tr>
+
+            <tr>
+                <td>Generation</td>
+                <td>3:03</td>
+                <td>2008-02-12</td>
+            </tr>
+
+        </form>
+    </table>
+
+            <button><a href="{{ url_for('songs') }}">Delete Song</a></button>
 {%  endblock %}
