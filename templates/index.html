@@ -1,9 +1,14 @@
 {%  extends 'main.j2' %}
 
 {% block header %}
-    <h1>{% block title %} AudioCat Streaming Service {% endblock %}</h1>
+    {% block title %}  {% endblock %}
 {%  endblock %}
 
 {%  block content %}
-    <h1>Welcome to AudioCat Streaming</h1>
+    <img src="{{ url_for('static', filename='img/AUDIOCAT.svg') }}" class="icon">
+    <h1 class="homepage">Welcome to AudioCat Streaming</h1>
+    <video autoplay muted loop id="myVideo">
+  <source src="{{ url_for('static', filename='img/audiocat-homepagevideo.webm') }}" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
 {%  endblock %}
