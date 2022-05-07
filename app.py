@@ -1,8 +1,11 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, json
 import os
+import database.db_connector as db
+db_connection = db.connect_to_database()
 
 
 app = Flask(__name__)
+
 
 # page routes
 
@@ -15,6 +18,12 @@ def index():
 @app.route('/artist')
 def artists():
     return render_template("artist.j2")
+    # # Select query for artists
+    # query = "SELECT * from Artists;"
+    # cursor = db.execute_query(db_connection=db_connection, query=query)
+    # results = cursor.fetchall()
+    # return render_template("artist.j2", Artists = results)
+
 
 
 @app.route('/add-artist')
