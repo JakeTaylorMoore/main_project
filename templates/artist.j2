@@ -7,16 +7,42 @@
 {%  block content %}
 
     <table>
-{#    table header#}
+    <thead>
     <tr>
-        <th>title</th>
-        <th>bio</th>
-        <th>genre</th>
-        <th>label</th>
-        <th></th>
-        <th></th>
+        <!-- Iterate through each key in the first entry to get the
+        column name -->
+        {% for key in Artists[0].keys() %}
+
+        <!-- Create a <th> tag with the key inside of it, this will be
+        our header row -->
+        <th>{{ key }}</th>
+
+        <!-- End of this for loop -->
+        {% endfor %}
     </tr>
 
+
+###
+
+    <tbody>
+    <!-- Now, iterate through every person in bsg_people -->
+    {% for artist in Artists %}
+    <tr>
+        <!-- Then iterate through every key in the current person dictionary -->
+        {% for key in artist.keys() %}
+
+        <!-- Create a <td> element with the value of that key in it -->
+        <td>{{artist[key]}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </table>
+
+
+###
+
+
+    <tbody>
 {#        table data#}
     <tr>
         <td>Aerosmith</td>
