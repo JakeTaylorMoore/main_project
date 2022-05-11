@@ -1,11 +1,16 @@
-from flask import Flask, render_template, url_for, json
+from flask import Flask, render_template, url_for, json, redirect
+from flask_mysqldb import MySQL
 import os
 import database.db_connector as db
 db_connection = db.connect_to_database()
 
-
 app = Flask(__name__)
 
+# app.config['MYSQL_HOST'] = 'classmysql.engr.oregonstate.edu'
+# app.config['MYSQL_USER'] = 'cs340_mooreja2'
+# app.config['MYSQL_PASSWORD'] = '5143'
+# app.config['MYSQL_DB'] = 'cs340_mooreja2'
+# app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 # page routes
 
@@ -17,13 +22,12 @@ def index():
 
 @app.route('/artist')
 def artists():
-    return render_template("artist.j2")
-    # # Select query for artists
-    # query = "SELECT * from Artists;"
-    # cursor = db.execute_query(db_connection=db_connection, query=query)
-    # results = cursor.fetchall()
-    # return render_template("artist.j2", Artists = results)
-
+    # return render_template("artist.j2")
+    # Select query for artists
+    query = "SELECT * from Artists;"
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    return render_template("artist.j2", Artists=results)
 
 
 @app.route('/add-artist')
@@ -122,5 +126,5 @@ def delete_playlist():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8829))
+    port = int(os.environ.get('PORT', 31523))
     app.run(port=port, debug=True)

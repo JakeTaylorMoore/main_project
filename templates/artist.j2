@@ -19,10 +19,10 @@
 
         <!-- End of this for loop -->
         {% endfor %}
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
-
-###
 
     <tbody>
     <!-- Now, iterate through every person in bsg_people -->
@@ -34,56 +34,10 @@
         <!-- Create a <td> element with the value of that key in it -->
         <td>{{artist[key]}}</td>
         {% endfor %}
+        <td><a href="{{ url_for('update_artist') }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_artist') }}">Delete</a></td>
     </tr>
     {% endfor %}
-    </table>
-
-
-###
-
-
-    <tbody>
-{#        table data#}
-    <tr>
-        <td>Aerosmith</td>
-        <td>Aerosmith is an american rock band ...</td>
-        <td>Hard Rock</td>
-        <td>Columbia</td>
-        <td><a href="{{ url_for('update_artist') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_artist') }}">Delete</a></td>
-    </tr>
-
-
-        <tr>
-        <td>Owl City</td>
-        <td>Owl City is an American electronic ...</td>
-        <td>Synth Pop</td>
-        <td>Republic</td>
-        <td><a href="{{ url_for('update_artist') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_artist') }}">Delete</a></td>
-    </tr>
-
-
-        <tr>
-        <td>Run-DMC</td>
-        <td>Run-DMC (also spelled Run-D.M.C.) was ...</td>
-        <td>Hip Hop</td>
-        <td>Profile</td>
-        <td><a href="{{ url_for('update_artist') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_artist') }}">Delete</a></td>
-    </tr>
-
-
-        <tr>
-        <td>Simple Plan</td>
-        <td>Simple Plan is a Canadian rock band ...</td>
-        <td>Pop Punk</td>
-        <td>Atlantic</td>
-        <td><a href="{{ url_for('update_artist') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_artist') }}">Delete</a></td>
-    </tr>
-
-
     </table>
 
     <button><a href="{{ url_for('add_artist') }}">Add Artist</a></button>
