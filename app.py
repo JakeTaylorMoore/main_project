@@ -31,12 +31,12 @@ def index():
 
 @app.route('/artist')
 def artists():
-    return render_template("artist.j2")
+    # return render_template("artist.j2")
     # Select query for artists
-    # query = "SELECT * from Artists;"
-    # cursor = db.execute_query(db_connection=db_connection, query=query)
-    # results = cursor.fetchall()
-    # return render_template("artist.j2", Artists=results)
+    query = "SELECT * from Artists;"
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    return render_template("artist.j2", Artists=results)
 
 
 @app.route('/add-artist')
