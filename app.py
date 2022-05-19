@@ -3,8 +3,11 @@ from flask_mysqldb import MySQL
 import os
 import database.db_connector as db
 db_connection = db.connect_to_database()
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 app = Flask(__name__)
+
 
 #
 
