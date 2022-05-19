@@ -8,9 +8,9 @@ load_dotenv(find_dotenv())
 # Set the variables in our application with those environment variables
 
 
-host = os.environ.get("LOCALHOST")      # MUST BE THIS
-user = os.environ.get("ROOT")       # don't forget the CS_340 prefix
-passwd = os.environ.get("PASS")               # should only be 4 digits if default
+host = os.environ.get("LOCALHOST")
+user = os.environ.get("ROOT")
+passwd = os.environ.get("PASS")
 db = os.environ.get("AUDIOCAT_DB")
 
 
