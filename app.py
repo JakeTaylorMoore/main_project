@@ -1,24 +1,24 @@
 from flask import Flask, render_template, url_for, json, redirect
 from flask_mysqldb import MySQL
 import os
-# import database.db_connector as db
-# db_connection = db.connect_to_database()
-# from dotenv import load_dotenv, find_dotenv
-# load_dotenv(find_dotenv())
+import database.db_connector as db
+db_connection = db.connect_to_database()
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 app = Flask(__name__)
 
 
 #
 
-# mysql = MySQL(app)
+mysql = MySQL(app)
 
 # #
-# app.config['MYSQL_HOST'] = os.environ.get("LOCALHOST")
-# app.config['MYSQL_USER'] = os.environ.get("ROOT")
-# app.config['MYSQL_PASSWORD'] = os.environ.get("PASS")
-# app.config['MYSQL_DB'] = os.environ.get("AUDIOCAT_DB")
-# app.config["MYSQL_CURSORCLASS"] = "DictCursor"
+app.config['MYSQL_HOST'] = os.environ.get("LOCALHOST")
+app.config['MYSQL_USER'] = os.environ.get("ROOT")
+app.config['MYSQL_PASSWORD'] = os.environ.get("PASS")
+app.config['MYSQL_DB'] = os.environ.get("AUDIOCAT_DB")
+app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
 
 # page routes
