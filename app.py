@@ -1,16 +1,14 @@
 from flask import Flask, render_template, url_for, json, redirect
 from flask_mysqldb import MySQL
 import os
-
-
-# import database.db_connector as db
-
+import database.db_connector as db
+db_connection = db.connect_to_database()
 
 app = Flask(__name__)
-db_connection = db.connect_to_database()
+
 #
 
-# mysql = MySQL(app)
+mysql = MySQL(app)
 
 #
 app.config['MYSQL_HOST'] = 'LOCALHOST'
