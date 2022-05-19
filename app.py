@@ -2,17 +2,18 @@ from flask import Flask, render_template, url_for, json, redirect
 from flask_mysqldb import MySQL
 import os
 import database.db_connector as db
-db_connection = db.connect_to_database()
+
 
 app = Flask(__name__)
-
-app.config['MYSQL_HOST'] = db['LOCALHOST']
-app.config['MYSQL_USER'] = db['ROOT']
-app.config['MYSQL_PASSWORD'] = db['PASS']
-app.config['MYSQL_DB'] = db['AUDIOCAT_DB']
-app.config["MYSQL_CURSORCLASS"] = db["DictCursor"]
-
-mysql = MySQL(app)
+db_connection = db.connect_to_database()
+#
+# app.config['MYSQL_HOST'] = 'LOCALHOST'
+# app.config['MYSQL_USER'] = 'ROOT'
+# app.config['MYSQL_PASSWORD'] = 'PASS'
+# app.config['MYSQL_DB'] = 'AUDIOCAT_DB'
+# app.config["MYSQL_CURSORCLASS"] = "DictCursor"
+#
+# mysql = MySQL(app)
 # page routes
 
 
