@@ -19,7 +19,7 @@ app.config['MYSQL_USER'] = os.environ.get("ROOT")
 app.config['MYSQL_PASSWORD'] = os.environ.get("PASS")
 app.config['MYSQL_DB'] = os.environ.get("AUDIOCAT_DB")
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
-#defined in heroku now....
+
 
 # page routes
 
