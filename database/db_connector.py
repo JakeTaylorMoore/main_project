@@ -1,9 +1,9 @@
 import MySQLdb
 import os
-from dotenv import load_dotenv, find_dotenv
+
 
 # Load our environment variables from the .env file in the root of our project.
-load_dotenv(find_dotenv())
+
 
 # Set the variables in our application with those environment variables
 

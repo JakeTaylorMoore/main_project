@@ -15,5 +15,5 @@
 
 host = os.environ.get("LOCALHOST")
 user = os.environ.get("ROOT")
-passwd = os.environ.get("PASS")         
+passwd = os.environ.get("PASS")
 db = os.environ.get("AUDIOCAT_DB")
