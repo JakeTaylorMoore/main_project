@@ -11,9 +11,9 @@
 # passwd = 'nottellingyou'                        # set accordingly
 # db = 'bsg'
 
-# For OSU Flip Servers
 
-host = 'classmysql.engr.oregonstate.edu'      # MUST BE THIS
-user = 'cs340_mooreja2'       # don't forget the CS_340 prefix
-passwd = '5143'               # should only be 4 digits if default
-db = 'cs340_mooreja2'
+
+host = os.environ.get("LOCALHOST")
+user = os.environ.get("ROOT")
+passwd = os.environ.get("PASS")         
+db = os.environ.get("AUDIOCAT_DB")

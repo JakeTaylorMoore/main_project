@@ -6,15 +6,11 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 # Set the variables in our application with those environment variables
-# host = os.environ.get("classmysql.engr.oregonstate.edu")
-# user = os.environ.get("cs340_mooreja2")
-# passwd = os.environ.get("5143")
-# db = os.environ.get("cs340_mooreja2")
 
-host = 'classmysql.engr.oregonstate.edu'      # MUST BE THIS
-user = 'cs340_mooreja2'       # don't forget the CS_340 prefix
-passwd = '5143'               # should only be 4 digits if default
-db = 'cs340_mooreja2'
+host = os.environ.get("LOCALHOST")      # MUST BE THIS
+user = os.environ.get("ROOT")       # don't forget the CS_340 prefix
+passwd = os.environ.get("PASS")               # should only be 4 digits if default
+db = os.environ.get("AUDIOCAT_DB")
 
 
 def connect_to_database(host=host, user=user, passwd=passwd, db=db):
@@ -22,7 +18,7 @@ def connect_to_database(host=host, user=user, passwd=passwd, db=db):
     connects to a database and returns a database objects
     '''
     db_connection = MySQLdb.connect(
-        'classmysql.engr.oregonstate.edu', 'cs340_mooreja2', '5143', 'cs340_mooreja2')
+        host, user, passwd, db)
     return db_connection
 
 

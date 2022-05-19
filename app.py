@@ -6,12 +6,12 @@ db_connection = db.connect_to_database()
 
 app = Flask(__name__)
 
-# app.config['MYSQL_HOST'] = 'classmysql.engr.oregonstate.edu'
-# app.config['MYSQL_USER'] = 'cs340_mooreja2'
-# app.config['MYSQL_PASSWORD'] = '5143'
-# app.config['MYSQL_DB'] = 'cs340_mooreja2'
-# app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+app.config['MYSQL_HOST'] = 'LOCALHOST'
+app.config['MYSQL_USER'] = 'ROOT'
+app.config['MYSQL_PASSWORD'] = 'PASS'
+app.config['MYSQL_DB'] = 'AUDIOCAT_DB'
 
+mysql = MySQL(app)
 # page routes
 
 
