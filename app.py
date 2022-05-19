@@ -11,10 +11,10 @@ app = Flask(__name__)
 mysql = MySQL(app)
 
 #
-app.config['MYSQL_HOST'] = 'LOCALHOST'
-app.config['MYSQL_USER'] = 'ROOT'
-app.config['MYSQL_PASSWORD'] = 'PASS'
-app.config['MYSQL_DB'] = 'AUDIOCAT_DB'
+app.config['MYSQL_HOST'] = os.environ.get("LOCALHOST")
+app.config['MYSQL_USER'] = os.environ.get("ROOT")
+app.config['MYSQL_PASSWORD'] = os.environ.get("PASS")
+app.config['MYSQL_DB'] = os.environ.get("AUDIOCAT_DB")
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
 
