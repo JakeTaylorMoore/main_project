@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 #
 
-mysql = MySQL(app)
+# mysql = MySQL(app)
 
 #
 app.config['MYSQL_HOST'] = os.environ.get("LOCALHOST")
