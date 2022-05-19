@@ -10,6 +10,7 @@ app.config['MYSQL_HOST'] = 'LOCALHOST'
 app.config['MYSQL_USER'] = 'ROOT'
 app.config['MYSQL_PASSWORD'] = 'PASS'
 app.config['MYSQL_DB'] = 'AUDIOCAT_DB'
+app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
 mysql = MySQL(app)
 # page routes
