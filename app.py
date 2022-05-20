@@ -62,10 +62,10 @@ def add_artist():
         return redirect('/artist')
 
 
-@app.route('/update-artist', methods=['POST', 'GET'])
-def update_artist():
+@app.route('/update-artist/<int:artist_id>', methods=['POST', 'GET'])
+def update_artist(artist_id):
     if request.method == "GET":
-        return render_template("update-artist.j2")
+        return render_template("update-artist.j2", artist_id=artist_id)
     if request.method == "POST":
         # Get input from user
         input_title = request.form["title"]
@@ -73,7 +73,7 @@ def update_artist():
         input_genre = request.form["genre"]
         input_label = request.form["label"]
         # Send query to db
-        query = "UPDATE Artists SET title=%s, bio=%s, genre=%s, label=%s WHERE artist_id=1"
+        query = "UPDATE Artists SET title=%s, bio=%s, genre=%s, label=%s WHERE artist_id=%"
         cur = mysql.connection.cursor()
         cur.execute(query, (input_title, input_bio, input_genre, input_label))
         mysql.connection.commit()
