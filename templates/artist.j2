@@ -35,7 +35,7 @@
         <td>{{artist[key]}}</td>
         {% endfor %}
         <td><a href="{{ url_for('update_artist') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_artist') }}">Delete</a></td>
+        <td><a href="/delete-artist/{{artist.artist_id}}">Delete</a></td>
     </tr>
     {% endfor %}
     </table>
