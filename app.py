@@ -82,9 +82,14 @@ def update_artist(artist_id):
         return redirect('/artist')
 
 
-@app.route('/delete-artist')
-def delete_artist():
-    return render_template("delete-artist.j2")
+@app.route('/delete-artist/<int:id>')
+def delete_artist(id):
+    #mySQL query to delete the person with our passed id
+    query = "DELETE from Artists WHERE artist_id = '%s';"
+    cur = mysql.connection.cursor()
+    cur.execute(query, (id,))
+    mysql.connection.commit()
+    return redirect('/artist')
 
 
 @app.route('/users')
