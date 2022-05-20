@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, json, redirect
+from flask import Flask, render_template, url_for, json, redirect, request
 from flask_mysqldb import MySQL
 import os
 import database.db_connector as db
@@ -29,19 +29,25 @@ def index():
     return render_template("index.html")
 
 
-@app.route('/artist')
+@app.route('/artist', methods=['POST', 'GET'])
 def artists():
-    # return render_template("artist.j2")
     # Select query for artists
-    query = "SELECT * from Artists;"
-    cursor = db.execute_query(db_connection=db_connection, query=query)
-    results = cursor.fetchall()
-    return render_template("artist.j2", Artists=results)
+    query = "SELECT * FROM Artists;"
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    data = cur.fetchall()
+    # cursor = db.execute_query(db_connection=db_connection, query=query)
+    # results = cursor.fetchall()
+    return render_template("artist.j2", Artists=data)
 
 
-@app.route('/add-artist')
+@app.route('/add-artist', methods=["POST", "GET"])
 def add_artist():
+    # Get input from user
     return render_template("add-artist.j2")
+    # if request.method == "GET":
+    #     return render_template("add-artist.j2")
+    # if request.method == "POST":
 
 
 @app.route('/update-artist')
