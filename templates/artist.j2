@@ -34,7 +34,7 @@
         <!-- Create a <td> element with the value of that key in it -->
         <td>{{artist[key]}}</td>
         {% endfor %}
-        <td><a href="update-artist/{{ artist.artist_id }}">Edit</a></td>
+        <td><a href="/update-artist/{{ artist.artist_id }}">Edit</a></td>
         <td><a href="/delete-artist/{{artist.artist_id}}">Delete</a></td>
     </tr>
     {% endfor %}
