@@ -20,17 +20,20 @@
             <td><input type="text" name="bio" placeholder="Add Bio..."></td>
             <td><select name="genre">
                <option value = "0"> Enter Genre </option>
-               <option value = "1">Hard Rock</option>
+               <option value = "Hard Rock">Hard Rock</option>
                <option value = "2">Pop Punk</option>
                <option value = "3">Hip Hop</option>
                <option value = "4">Pop</option>
            </select></td>
             <td><input type="text" name="label" placeholder="Enter Label"></td>
         </tr>
-
-
-       </form>
     </table>
+    {# Button needed to be within form tag #}
+    <button>Add Artist</button>
 
-    <button><a href="{{ url_for('artists') }}">Add Artist</a></button>
+    </form>
+
+    {# <button><a href="{{ url_for('artists') }}">Add Artist</a></button> #}
+    {# ** Left this here in case we need it ** #}
+
 {%  endblock %}

@@ -43,11 +43,23 @@ def artists():
 
 @app.route('/add-artist', methods=["POST", "GET"])
 def add_artist():
-    # Get input from user
-    return render_template("add-artist.j2")
-    # if request.method == "GET":
-    #     return render_template("add-artist.j2")
-    # if request.method == "POST":
+    if request.method == "GET":
+        return render_template("add-artist.j2")
+
+    if request.method == "POST":
+        # Get input from user
+        input_title = request.form["title"]
+        input_bio = request.form["bio"]
+        input_genre = request.form["genre"]
+        input_label = request.form["label"]
+        # Send query to db
+        query = "INSERT INTO Artists (title, bio, genre, label) VALUES (%s, %s, %s, %s)"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (input_title, input_bio, input_genre, input_label))
+        mysql.connection.commit()
+
+        # Redirect to artist page
+        return redirect('/artist')
 
 
 @app.route('/update-artist')
