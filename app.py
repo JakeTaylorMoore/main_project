@@ -62,9 +62,24 @@ def add_artist():
         return redirect('/artist')
 
 
-@app.route('/update-artist')
+@app.route('/update-artist', methods=['POST', 'GET'])
 def update_artist():
-    return render_template("update-artist.j2")
+    if request.method == "GET":
+        return render_template("update-artist.j2")
+    if request.method == "POST":
+        # Get input from user
+        input_title = request.form["title"]
+        input_bio = request.form["bio"]
+        input_genre = request.form["genre"]
+        input_label = request.form["label"]
+        # Send query to db
+        query = "UPDATE Artists SET title=%s, bio=%s, genre=%s, label=%s WHERE artist_id=1"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (input_title, input_bio, input_genre, input_label))
+        mysql.connection.commit()
+
+        # Redirect to artist page
+        return redirect('/artist')
 
 
 @app.route('/delete-artist')
