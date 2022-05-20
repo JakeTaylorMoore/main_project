@@ -139,13 +139,13 @@ CREATE TABLE IF NOT EXISTS `Artists_Songs` (
   CONSTRAINT `fk_Artists_Songs_Artists1`
     FOREIGN KEY (`artist_id`)
     REFERENCES `Artists` (`artist_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Artists_Songs_Songs1`
     FOREIGN KEY (`song_id`)
     REFERENCES `Songs` (`song_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -178,7 +178,7 @@ VALUES
 -- Insert into 'Playlists'
 -- -----------------------------------------------------
 INSERT INTO `Playlists` (`created_at`, `title`, `user_id`)
-VALUES 
+VALUES
 (
   '2022-10-03', 'Money Ball', '3'
 ),
@@ -199,7 +199,7 @@ VALUES
 -- Insert into 'Playlists_Songs'
 -- -----------------------------------------------------
 INSERT INTO `Playlists_Songs` (`playlist_id`, `song_id`)
-VALUES 
+VALUES
 (
   '5', '3'
 ),
@@ -220,7 +220,7 @@ VALUES
 -- Insert into 'Songs'
 -- -----------------------------------------------------
 INSERT INTO `Songs` (`title`, `length`, `release_date`, `album_id`)
-VALUES 
+VALUES
 (
   'Generation', '00:03:03', '2008-02-12', '3'
 ),
@@ -283,7 +283,7 @@ VALUES
 -- -- Insert into 'Artists_Albums'
 -- -- -----------------------------------------------------
 -- INSERT INTO `Artists_Albums` (`artist_id`, `album_id`)
--- VALUES 
+-- VALUES
 -- (
 --   '2', '1'
 -- ),
@@ -306,17 +306,17 @@ VALUES
 INSERT INTO `Artists` (`title`, `bio`, `genre`, `label`)
 VALUES
 (
-  'Simple Plan', 
+  'Simple Plan',
   'Simple Plan is a Canadian rock band from Montreal, Quebec formed in 1999.',
   'Pop Punk', 'Atlantic'
 ),
 (
-  'Owl City', 
+  'Owl City',
   'Owl City is an American electronic music project created in 2007 in Owatonna, Minnesota.',
   'Synth Pop', 'Republic'
 ),
 (
-  'Vanilla Ice', 
+  'Vanilla Ice',
   'Robert Matthew Van Winkle (born October 31, 1967), known professionally as Vanilla Ice, is an American rapper, actor, and television host.',
   'Hip Hop', 'SBK'
 ),
@@ -326,8 +326,8 @@ VALUES
   'Hip Hop', 'Profile'
 ),
 (
-  'Aerosmith', 
-  'Aerosmith is an American rock band formed in Boston in 1970.', 
+  'Aerosmith',
+  'Aerosmith is an American rock band formed in Boston in 1970.',
   'Hard Rock', 'Columbia'
 );
 
