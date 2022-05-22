@@ -2,12 +2,13 @@ from flask import Flask, render_template, url_for, json, redirect, request
 from flask_mysqldb import MySQL
 import os
 import database.db_connector as db
+
 db_connection = db.connect_to_database()
 from dotenv import load_dotenv, find_dotenv
+
 load_dotenv(find_dotenv())
 
 app = Flask(__name__)
-
 
 #
 
@@ -62,10 +63,16 @@ def add_artist():
         return redirect('/artist')
 
 
-@app.route('/update-artist/<int:artist_id>', methods=['POST', 'GET'])
-def update_artist(artist_id):
-    if request.method == "GET":
-        return render_template("update-artist.j2", artist_id=artist_id)
+@app.route('/update-artist/<int:_id>', methods=['POST', 'GET'])
+def update_artist(_id):
+    # Retrieve artist to set locally
+    artist_query = f"SELECT * FROM Artists"
+    cur = mysql.connection.cursor()
+    cur.execute(artist_query)
+    # Get list of artist that match id and then convert back to dict
+    artist = [artist for artist in cur.fetchall() if artist["artist_id"] == _id]
+    artist = artist[0]
+
     if request.method == "POST":
         # Get input from user
         input_title = request.form["title"]
@@ -73,18 +80,18 @@ def update_artist(artist_id):
         input_genre = request.form["genre"]
         input_label = request.form["label"]
         # Send query to db
-        query = "UPDATE Artists SET title=%s, bio=%s, genre=%s, label=%s WHERE artist_id=%"
+        query = "UPDATE Artists SET title=%s, bio=%s, genre=%s, label=%s WHERE artist_id=%s"
         cur = mysql.connection.cursor()
-        cur.execute(query, (input_title, input_bio, input_genre, input_label))
+        cur.execute(query, (input_title, input_bio, input_genre, input_label, _id))
         mysql.connection.commit()
-
         # Redirect to artist page
         return redirect('/artist')
+    return render_template("update-artist.j2", artist=artist)
 
 
 @app.route('/delete-artist/<int:id>')
 def delete_artist(id):
-    #mySQL query to delete the person with our passed id
+    # mySQL query to delete the person with our passed id
     query = "DELETE from Artists WHERE artist_id = '%s';"
     cur = mysql.connection.cursor()
     cur.execute(query, (id,))

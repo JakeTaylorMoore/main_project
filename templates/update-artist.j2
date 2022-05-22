@@ -6,7 +6,9 @@
 
 {%  block content %}
 
-   <form method="POST" id="UpdateArtist">
+    <form method="POST" id="UpdateArtist">
+
+
    <table>
 {#   <fieldset class="fields">#}
       <input type="hidden" name="artist_id" id="updateArtistID" value="1">
@@ -20,9 +22,9 @@
            </tr>
 
        <tr>
-           <td>1</td>
-           <td><input type="text" name="title" value="Aerosmith"></td>
-           <td><input type="text" name="bio" value="Aerosmith is an American rock band formed in Boston in 1970."></td>
+           <td>{{ artist["artist_id"] }}</td>
+           <td><input type="text" name="title" value={{artist['title']}}></td>
+           <td><input type="text" name="bio" value={{artist['bio']}}></td>
            <td><select name="genre">
                <option value = "0"> </option>
                <option value = "Hard Rock">Hard Rock</option>
@@ -31,7 +33,7 @@
                <option value = "Pop">Pop</option>
            </select></td>
 
-           <td><input type="text" name="label" value="Columbia" </td>
+           <td><input type="text" name="label" value={{artist['label']}} ></td>
 {#   </fieldset>#}
     </table>
     <button>Update Artist</button>
