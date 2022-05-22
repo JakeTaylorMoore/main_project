@@ -23,8 +23,8 @@
 
        <tr>
            <td>{{ artist["artist_id"] }}</td>
-           <td><input type="text" name="title" value={{artist['title']}}></td>
-           <td><input type="text" name="bio" value={{artist['bio']}}></td>
+           <td><input type="text" name="title" value="{{artist['title']}}"></td>
+           <td><input type="text" name="bio" value="{{artist['bio']}}"></td>
            <td><select name="genre">
                <option value = "0"> </option>
                <option value = "Hard Rock">Hard Rock</option>
@@ -33,7 +33,7 @@
                <option value = "Pop">Pop</option>
            </select></td>
 
-           <td><input type="text" name="label" value={{artist['label']}} ></td>
+           <td><input type="text" name="label" value="{{artist['label']}}"></td>
 {#   </fieldset>#}
     </table>
     <button>Update Artist</button>
