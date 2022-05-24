@@ -7,50 +7,40 @@
 {%  block content %}
 
     <table>
-{#    table header#}
+    <thead>
     <tr>
-        <th>Album ID</th>
-        <th>title</th>
-        <th>release date</th>
-        <th></th>
-        <th></th>
+        <!-- Iterate through each key in the first entry to get the
+        column name -->
+        {% for key in Albums[0].keys() %}
+
+        <!-- Create a <th> tag with the key inside of it, this will be
+        our header row -->
+        <th>{{ key }}</th>
+
+        <!-- End of this for loop -->
+        {% endfor %}
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
 
-{#    table data#}
+    <tbody>
+    <!-- Now, iterate through every person in bsg_people -->
+    {% for album in Albums %}
     <tr>
-        <td>1</td>
-        <td>Ocean Eyes</td>
-        <td>2009-07-28</td>
-        <td><a href="{{ url_for('update_album') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_album') }}">Delete</a></td>
+        <!-- Then iterate through every key in the current person dictionary -->
+        {% for key in album.keys() %}
+
+        <!-- Create a <td> element with the value of that key in it -->
+        <td>{{album[key]}}</td>
+        {% endfor %}
+        <td><a href="/update-album/{{ album.album_id }}">Edit</a></td>
+        <td><a href="/delete-album/{{album.album_id}}">Delete</a></td>
     </tr>
-
-        <tr>
-        <td>2</td>
-        <td>To the Extreme</td>
-        <td>1990-09-03</td>
-        <td><a href="{{ url_for('update_album') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_album') }}">Delete</a></td>
-
-
-        <tr>
-        <td>3</td>
-        <td>Simple Plan</td>
-        <td>2008-02-12</td>
-        <td><a href="{{ url_for('update_album') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_album') }}">Delete</a></td>
-    </tr>
-
-        <tr>
-        <td>4</td>
-        <td>Raising Hell</td>
-        <td>1996-07-04</td>
-        <td><a href="{{ url_for('update_album') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_album') }}">Delete</a></td>
-    </tr>
-
+    {% endfor %}
     </table>
 
-        <button><a href="{{ url_for('add_album') }}">Add Album</a></button>
+    <button><a href="{{ url_for('add_album') }}">Add Album</a></button>
+
+
 {%  endblock %}

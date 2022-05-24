@@ -101,27 +101,70 @@ def delete_artist(id):
 
 @app.route('/users')
 def users():
-    return render_template("users.j2")
+    query = "SELECT * FROM Users;"
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    data = cur.fetchall()
+    return render_template("users.j2", Users=data)
 
 
-@app.route('/add-users')
+@app.route('/add-user', methods=["POST", "GET"])
 def add_users():
-    return render_template("add-user.j2")
+    if request.method == "GET":
+        return render_template("add-user.j2")
+
+    if request.method == "POST":
+        input_fname = request.form["fname"]
+        input_lname = request.form["lname"]
+        input_email = request.form["email"]
+        input_created_at = request.form["created_at"]
+        input_password = request.form["password"]
+        query = "INSERT INTO Users (first_name, last_name, email, created_at, password) VALUES (%s, %s, %s, %s, %s)"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (input_fname, input_lname, input_email, input_created_at, input_password))
+        mysql.connection.commit()
+        return redirect('/users')
 
 
-@app.route('/update-user')
-def update_user():
-    return render_template("update-user.j2")
+@app.route('/update-user/<int:_id>', methods=['POST', 'GET'])
+def update_user(_id):
+    user_query = f"SELECT * FROM Users"
+    cur = mysql.connection.cursor()
+    cur.execute(user_query)
+    user = [user for user in cur.fetchall() if user["user_id"] == _id]
+    user = user[0]
+
+    if request.method == "POST":
+        input_fname = request.form["fname"]
+        input_lname = request.form["lname"]
+        input_email = request.form["email"]
+        input_created_at = request.form["created_at"]
+        input_password = request.form["password"]
+        query = "UPDATE Users SET first_name=%s, last_name=%s, email=%s, created_at=%s, password=%s WHERE user_id=%s"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (input_fname, input_lname, input_email, input_created_at, input_password, _id))
+        mysql.connection.commit()
+        return redirect('/users')
+
+    return render_template("update-user.j2", user=user)
 
 
-@app.route('/delete-user')
-def delete_user():
-    return render_template("delete-user.j2")
+@app.route('/delete-user/<int:id>')
+def delete_user(id):
+    query = "DELETE from Users WHERE user_id = '%s';"
+    cur = mysql.connection.cursor()
+    cur.execute(query, (id,))
+    mysql.connection.commit()
+    return redirect('/users')
 
 
 @app.route('/albums')
 def albums():
-    return render_template("albums.j2")
+    query = "SELECT * FROM Albums;"
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    data = cur.fetchall()
+    return render_template("albums.j2", Albums=data)
 
 
 @app.route('/add-album')

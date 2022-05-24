@@ -6,78 +6,41 @@
 
 {%  block content %}
 
-
-      <table>
-{#    table header#}
+    <table>
+    <thead>
     <tr>
+        <!-- Iterate through each key in the first entry to get the
+        column name -->
+        {% for key in Users[0].keys() %}
 
-           <th>First Name</th>
-           <th>Last Name</th>
-           <th>Email</th>
-           <th>Created At</th>
-           <th>password</th>
-           <th></th>
-           <th></th>
+        <!-- Create a <th> tag with the key inside of it, this will be
+        our header row -->
+        <th>{{ key }}</th>
+
+        <!-- End of this for loop -->
+        {% endfor %}
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
-{#      table data#}
 
-      <tr>
-          <td>Brad</td>
-          <td>Pitt</td>
-          <td>brad@example.com</td>
-          <td>2020-05-30</td>
-          <td>**********</td>
-          <td><a href="{{ url_for('update_user') }}">Edit</a></td>
-          <td><a href="{{ url_for('delete_user') }}">Delete</a></td>
-      </tr>
+    <tbody>
+    <!-- Now, iterate through every person in bsg_people -->
+    {% for user in Users %}
+    <tr>
+        <!-- Then iterate through every key in the current person dictionary -->
+        {% for key in user.keys() %}
 
+        <!-- Create a <td> element with the value of that key in it -->
+        <td>{{user[key]}}</td>
+        {% endfor %}
+        <td><a href="/update-user/{{ user.user_id }}">Edit</a></td>
+        <td><a href="/delete-user/{{user.user_id}}">Delete</a></td>
+    </tr>
+    {% endfor %}
+    </table>
 
-          <tr>
-          <td>Dejounte</td>
-          <td>Murray</td>
-          <td>dj@example.com</td>
-          <td>2018-11-20</td>
-          <td>**********</td>
-          <td><a href="{{ url_for('update_user') }}">Edit</a></td>
-          <td><a href="{{ url_for('delete_user') }}">Delete</a></td>
-      </tr>
-
-
-          <tr>
-          <td>Leonard</td>
-          <td>Moore</td>
-          <td>leonard@example.com</td>
-          <td>2022-01-01</td>
-          <td>**********</td>
-          <td><a href="{{ url_for('update_user') }}">Edit</a></td>
-          <td><a href="{{ url_for('delete_user') }}">Delete</a></td>
-      </tr>
-
-
-          <tr>
-          <td>Robert</td>
-          <td>Bobbie</td>
-          <td>robob@example.com</td>
-          <td>2021-07-04</td>
-          <td>**********</td>
-          <td><a href="{{ url_for('update_user') }}">Edit</a></td>
-          <td><a href="{{ url_for('delete_user') }}">Delete</a></td>
-      </tr>
-
-                <tr>
-          <td>Tom</td>
-          <td>Morello</td>
-          <td>tmo@example.com</td>
-          <td>2019-02-04</td>
-          <td>**********</td>
-          <td><a href="{{ url_for('update_user') }}">Edit</a></td>
-          <td><a href="{{ url_for('delete_user') }}">Delete</a></td>
-      </tr>
-
-      </table>
-
-        <button><a href="{{ url_for('add_users') }}">Add User</a></button>
+    <button><a href="{{ url_for('add_users') }}">Add User</a></button>
 
 
 {%  endblock %}
