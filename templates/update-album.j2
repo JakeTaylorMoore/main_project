@@ -5,24 +5,27 @@
 {%  endblock %}
 
 {%  block content %}
+       <form method="POST" id="UpdateAlbum">
  <table>
-   <form method="POST" id="UpdateArtist">
-{#   <fieldset class="fields">#}
-      <input type="hidden" name="album_id" id="updateAlbumID" value="1">
-           <tr>
+           <input type="hidden" name="album_id" id="updateAlbumID" value="1">
 
-        <th>title</th>
-        <th>release date</th>
+{#   <fieldset class="fields">#}
+
+           <tr>
+        <th><label> ID: </label></th>
+        <th><label>Title:</label></th>
+        <th><label>Release Date: </label></th>
 
     </tr>
 
 <tr>
-           <td><input type="text" name="title" value="Ocean Eyes"></td>
-           <td><input type="date" name="date" value=2009-07-28></td>
+               <td>{{ album["album_id"] }}</td>
+           <td><input type="text" name="title" value="{{ album['title'] }}"></td>
+           <td><input type="date" name="release_date" value="{{  album['release_date'] }}"></td>
 </tr>
 
-   </form>
  </table>
 
-            <button><a href="{{ url_for('albums') }}">Update Album</a></button>
+    <button>Update Album</button>
+       </form>
 {%  endblock %}

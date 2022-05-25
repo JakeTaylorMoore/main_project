@@ -5,20 +5,22 @@
 {%  endblock %}
 
 {%  block content %}
+            <form method="POST" id="addAlbum">
     <table>
-        <form method="POST" id="addAlbum">
+
 
 <tr>
-        <th>title</th>
-        <th>release date</th>
+        <th><label>Title:</label></th>
+        <th><label>Release Date:</label></th>
 </tr>
 
              <tr>
            <td><input type="text" name="title" placeholder="album title"></td>
-           <td><input type="date" name="date"></td>
+           <td><input type="date" name="release_date"></td>
 
-        </form>
+
     </table>
 
-        <button><a href="{{ url_for('albums') }}">Add Album</a></button>
+        <button>Add Album</button>
+            </form>
 {%  endblock %}
