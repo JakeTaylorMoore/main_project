@@ -5,21 +5,30 @@
 {%  endblock %}
 
 {%  block content %}
- <table>
-   <form method="POST" id="UpdatePlaylist">
 
+   <form method="POST" id="UpdatePlaylist">
+    <table>
       <input type="hidden" name="playlist_id" id="updatePlaylistID" value="1">
+
+      {#   <fieldset class="fields">#}
+
+
        <tr>
+       <th>Playlist ID</th>
        <th>Created At</th>
        <th>Title</th>
+       <th>User ID</th>
        </tr>
 
        <tr>
-           <td><input type="date" name="date" value=2022-10-03</td>
-           <td><input type="text" name="title" value="Money Ball"></td>
+           <td>{{ playlist["playlist_id"] }}</td>
+           <td><input type="date" name="created_at" value="{{ playlist['created_at'] }}"></td>
+           <td><input type="text" name="title" value="{{ playlist['title'] }}"></td>
+           <td><input type="number" name="user_id" value="{{ playlist['user_id'] }}"></td>
        </tr>
 
-   </form>
+
  </table>
-                    <button><a href="{{ url_for('playlists') }}">Update Playlist</a></button>
+                    <button>Update Playlist</button>
+                       </form>
 {%  endblock %}

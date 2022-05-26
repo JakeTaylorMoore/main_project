@@ -164,6 +164,7 @@ def albums():
     cur = mysql.connection.cursor()
     cur.execute(query)
     data = cur.fetchall()
+    print(data)
     return render_template("albums.j2", Albums=data)
 
 
@@ -192,7 +193,7 @@ def update_album(_id):
     album = album[0]
 
     if request.method == "POST":
-        input_title = request.form["title"];
+        input_title = request.form["title"]
         input_release_date = request.form["release_date"]
         query = "UPDATE Albums SET title=%s, release_date=%s WHERE album_id=%s"
         cur = mysql.connection.cursor()
@@ -214,42 +215,115 @@ def delete_album(id):
 
 @app.route('/songs')
 def songs():
-    return render_template("songs.j2")
+    query = f"SELECT * FROM Songs;"
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    data = cur.fetchall()
+    return render_template("songs.j2", Songs=data)
 
 
-@app.route('/add-song')
+@app.route('/add-song', methods=['POST', 'GET'])
 def add_song():
-    return render_template("add-song.j2")
+    if request.method == "GET":
+        return render_template('add-song.j2')
+
+    if request.method == "POST":
+        input_title = request.form["title"]
+        input_length = request.form["length"]
+        input_release_date = request.form["release_date"]
+        query = "INSERT INTO Songs (title, length, release_date) VALUES (%s, %s, %s)"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (input_title, input_length, input_release_date))
+        mysql.connection.commit()
+
+        return redirect('/songs')
 
 
-@app.route('/update-song')
-def update_song():
-    return render_template("update-song.j2")
+@app.route('/update-song/<int:_id>', methods=['POST', 'GET'])
+def update_song(_id):
+    song_query = f"SELECT * FROM Songs"
+    cur = mysql.connection.cursor()
+    cur.execute(song_query)
+    song = [song for song in cur.fetchall() if song["song_id"] == _id]
+    song = song[0]
+
+    if request.method == "POST":
+        input_title = request.form["title"]
+        input_length = request.form["length"]
+        input_release_date = request.form["release_date"]
+        query = "UPDATE Songs SET title=%s, length=%s, release_date=%s WHERE song_id=%s"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (input_title, input_length, input_release_date, _id))
+        mysql.connection.commit()
+        return redirect('/songs')
+
+    return render_template('update-song.j2', song=song)
 
 
-@app.route('/delete-song')
-def delete_song():
-    return render_template("delete-song.j2")
+@app.route('/delete-song/<int:id>')
+def delete_song(id):
+    query = "DELETE FROM Songs WHERE song_id = %s;"
+    cur = mysql.connection.cursor()
+    cur.execute(query, (id,))
+    mysql.connection.commit()
+    return redirect('/songs')
 
 
 @app.route('/playlists')
 def playlists():
-    return render_template("playlists.j2")
+    query = "SELECT * FROM Playlists;"
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    data = cur.fetchall()
+    print(data)
+    return render_template("playlists.j2", Playlists=data)
 
 
-@app.route('/add-playlist')
+@app.route('/add-playlist', methods=['POST', 'GET'])
 def add_playlist():
-    return render_template("add-playlist.j2")
+    if request.method == "GET":
+        return render_template('add-playlist.j2')
+
+    if request.method == "POST":
+        input_created_at = request.form["created_at"]
+        input_title = request.form["title"]
+        input_user_id = request.form["user_id"]
+        query = "INSERT INTO Playlists (created_at, title, user_id) VALUES (%s, %s, %s)"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (input_created_at, input_title, input_user_id))
+        mysql.connection.commit()
+
+        return redirect('/playlists')
 
 
-@app.route('/update-playlist')
-def update_playlist():
-    return render_template("update-playlist.j2")
+@app.route('/update-playlist/<int:_id>', methods=['POST', 'GET'])
+def update_playlist(_id):
+    playlist_query = f"SELECT * FROM Playlists"
+    cur = mysql.connection.cursor()
+    cur.execute(playlist_query)
+    playlist = [playlist for playlist in cur.fetchall() if playlist["playlist_id"] == _id]
+    playlist = playlist[0]
+
+    if request.method == "POST":
+        input_created_at = request.form["created_at"]
+        input_title = request.form["title"]
+        input_user_id = request.form["user_id"]
+        query = "UPDATE Playlists SET created_at=%s, title=%s, user_id=%s WHERE playlist_id=%s"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (input_created_at, input_title, input_user_id, _id))
+        mysql.connection.commit()
+        return redirect('/playlists')
+
+    return render_template('update-playlist.j2', playlist=playlist)
 
 
-@app.route("/delete-playlist")
-def delete_playlist():
-    return render_template("delete-playlist.j2")
+@app.route('/delete-playlist/<int:id>')
+def delete_playlist(id):
+    query = "DELETE FROM Playlists WHERE playlist_id = %s;"
+    cur = mysql.connection.cursor()
+    cur.execute(query, (id,))
+    mysql.connection.commit()
+    return redirect('/playlists')
 
 
 @app.context_processor

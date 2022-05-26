@@ -5,22 +5,29 @@
 {%  endblock %}
 
 {%  block content %}
- <table>
-   <form method="POST" id="UpdateSong">
+    <form method="POST" id="UpdateSong">
+    <table>
+    <input type="hidden" name="song_id" id="updateSongID" value="1">
 {#   <fieldset class="fields">#}
-      <input type="hidden" name="song_id" id="updateSongID" value="1">
+
             <tr>
-        <th>title</th>
-        <th>length</th>
-        <th>release date</th>
-</tr>
+        <th><label>Song ID: </label></th>
+        <th><label>Title: </label></th>
+        <th><label>Length: </label></th>
+        <th><label>Release Date: </label></th>
+        <th><label>Album ID: </label></th>
+    </tr>
 
+    <tr>
+            <td>{{ song["song_id"] }}</td>
+           <td><input type="text" name="title" value="{{ song['title'] }}""></td>
+           <td><input type="number" name="number" value="{{ song['length'] }}"></td>
+            <td><input type="date" name="date" value="{{ song['release_date'] }}"></td>
+            <td>{{ song["album_id"] }}</td>
+   </tr>
 
-           <td><input type="text" name="title" value="Generation"></td>
-           <td><input type="number" name="number" value=3> : <input type="number" name="number" value=03> </td>
-            <td><input type="date" name="date" value=2008-02-12</td>
-   </form>
  </table>
 
-                <button><a href="{{ url_for('songs') }}">Update Song</a></button>
+                <button>Update Song</button>
+    </form>
 {%  endblock %}

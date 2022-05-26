@@ -5,55 +5,42 @@
 {%  endblock %}
 
 {%  block content %}
+
     <table>
-{#    table header#}
+    <thead>
     <tr>
-        <th>Playlist ID</th>
-        <th>User ID</th>
-        <th>Created At</th>
-        <th>Title</th>
-        <th></th>
-        <th></th>
+        <!-- Iterate through each key in the first entry to get the
+        column name -->
+        {% for key in Playlists[0].keys() %}
+
+        <!-- Create a <th> tag with the key inside of it, this will be
+        our header row -->
+        <th>{{ key }}</th>
+
+        <!-- End of this for loop -->
+        {% endfor %}
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
-    {#    table data#}
+
+    <tbody>
+    <!-- Now, iterate through every person in bsg_people -->
+    {% for playlist in Playlists %}
     <tr>
-        <td>1</td>
-        <td>3</td>
-        <td>2022-10-03</td>
-        <td>Money Ball</td>
-        <td><a href="{{ url_for('update_playlist') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_playlist') }}">Delete</a></td>
-    </tr>
+        <!-- Then iterate through every key in the current person dictionary -->
+        {% for key in playlist.keys() %}
 
-        <tr>
-        <td>2</td>
-        <td>5</td>
-        <td>2022-05-06</td>
-        <td>Sleep Music</td>
-        <td><a href="{{ url_for('update_playlist') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_playlist') }}">Delete</a></td>
+        <!-- Create a <td> element with the value of that key in it -->
+        <td>{{playlist[key]}}</td>
+        {% endfor %}
+        <td><a href="/update-playlist/{{ playlist.playlist_id }}">Edit</a></td>
+        <td><a href="/delete-playlist/{{playlist.playlist_id}}">Delete</a></td>
     </tr>
-
-            <tr>
-        <td>3</td>
-        <td>4</td>
-        <td>2021-02-02</td>
-        <td>Rollin' Down Rodeo</td>
-        <td><a href="{{ url_for('update_playlist') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_playlist') }}">Delete</a></td>
-    </tr>
-
-        <tr>
-        <td>4</td>
-        <td>4</td>
-        <td>2021-02-01</td>
-        <td>Simple Plan Entire Discography</td>
-        <td><a href="{{ url_for('update_playlist') }}">Edit</a></td>
-        <td><a href="{{ url_for('delete_playlist') }}">Delete</a></td>
-    </tr>
-
+    {% endfor %}
     </table>
 
-            <button><a href="{{ url_for('add_playlist') }}">Add Playlist</a></button>
+    <button><a href="{{ url_for('add_playlist') }}">Add Playlist</a></button>
+
+
 {%  endblock %}

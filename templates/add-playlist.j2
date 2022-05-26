@@ -9,18 +9,21 @@
         <form method="POST" id="addPlaylist">
 
 <tr>
-        <th>Created At</th>
-        <th>Title</th>
+        <th>Created At:</th>
+        <th>Title:</th>
+        <th>User ID:</th>
 
 </tr>
 
              <tr>
-                 <td><input type="date" name="date"></td>
+                 <td><input type="date" name="created_at"></td>
                  <td><input type="text" name="title" placeholder="playlist title"></td>
+                 <td><input type="number" name="user_id" placeholder="User ID"></td>
 
 
-        </form>
+
     </table>
 
-        <button><a href="{{ url_for('playlists') }}">Add Playlist</a></button>
+        <button>Add Playlist</button>
+    </form>
 {%  endblock %}
