@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for, json, redirect, request
+import datetime
 from flask_mysqldb import MySQL
 import os
 import database.db_connector as db
@@ -249,6 +250,11 @@ def update_playlist():
 @app.route("/delete-playlist")
 def delete_playlist():
     return render_template("delete-playlist.j2")
+
+
+@app.context_processor
+def inject_today_date():
+    return{'today_date': datetime.date.today()}
 
 
 if __name__ == '__main__':
