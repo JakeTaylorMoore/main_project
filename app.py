@@ -145,7 +145,6 @@ def update_user(_id):
         cur.execute(query, (input_fname, input_lname, input_email, input_created_at, input_password, _id))
         mysql.connection.commit()
         return redirect('/users')
-
     return render_template("update-user.j2", user=user)
 
 

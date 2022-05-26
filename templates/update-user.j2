@@ -24,8 +24,8 @@
 
        <tr>
            <td>{{ user["user_id"] }}</td>
-           <td><input type="text" name="fname" value="{{ user['fname'] }}"></td>
-           <td><input type="text" name="lname" value="{{ user['lname'] }}"></td>
+           <td><input type="text" name="fname" value="{{user['first_name']}}"></td>
+           <td><input type="text" name="lname" value="{{ user['last_name'] }}"></td>
            <td><input type="text" name="email" value="{{ user['email'] }}"></td>
            <td><input type="text" name="created_at" value="{{ user['created_at'] }}"></td>
            <td><input type="password" name="password" value="{{ user['password'] }}"></td>
