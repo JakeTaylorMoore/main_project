@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `Playlists` (
   CONSTRAINT `fk_playlist_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `Users` (`user_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -76,8 +76,8 @@ CREATE TABLE IF NOT EXISTS `Songs` (
   CONSTRAINT `fk_song_album1`
     FOREIGN KEY (`album_id`)
     REFERENCES `Albums` (`album_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -97,13 +97,13 @@ CREATE TABLE IF NOT EXISTS `Playlists_Songs` (
   CONSTRAINT `fk_playlist_song_playlist1`
     FOREIGN KEY (`playlist_id`)
     REFERENCES `Playlists` (`playlist_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_playlist_song_song1`
     FOREIGN KEY (`song_id`)
     REFERENCES `Songs` (`song_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 

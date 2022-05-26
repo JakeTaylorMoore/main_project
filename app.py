@@ -167,19 +167,49 @@ def albums():
     return render_template("albums.j2", Albums=data)
 
 
-@app.route('/add-album')
+@app.route('/add-album', methods=['POST', 'GET'])
 def add_album():
-    return render_template('add-album.j2')
+    if request.method == "GET":
+        return render_template('add-album.j2')
+
+    if request.method == "POST":
+        input_title = request.form["title"]
+        input_release_date = request.form["release_date"]
+        query = "INSERT INTO Albums (title, release_date) VALUES (%s, %s)"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (input_title, input_release_date))
+        mysql.connection.commit()
+
+        return redirect('/albums')
 
 
-@app.route('/update-album')
-def update_album():
-    return render_template('update-album.j2')
+@app.route('/update-album/<int:_id>', methods=['POST', 'GET'])
+def update_album(_id):
+    album_query = f"SELECT * FROM Albums"
+    cur = mysql.connection.cursor()
+    cur.execute(album_query)
+    album = [album for album in cur.fetchall() if album["album_id"] == _id]
+    album = album[0]
+
+    if request.method == "POST":
+        input_title = request.form["title"];
+        input_release_date = request.form["release_date"]
+        query = "UPDATE Albums SET title=%s, release_date=%s WHERE album_id=%s"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (input_title, input_release_date, _id))
+        mysql.connection.commit()
+        return redirect('/albums')
+
+    return render_template('update-album.j2', album=album)
 
 
-@app.route('/delete-album')
-def delete_album():
-    return render_template('delete-album.j2')
+@app.route('/delete-album/<int:id>')
+def delete_album(id):
+    query = "DELETE FROM Albums WHERE album_id = %s;"
+    cur = mysql.connection.cursor()
+    cur.execute(query, (id,))
+    mysql.connection.commit()
+    return redirect('/albums')
 
 
 @app.route('/songs')
