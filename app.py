@@ -229,9 +229,9 @@ def add_song():
 
     if request.method == "POST":
         input_title = request.form["title"]
-        input_length = request.form["length"]
+        input_length = request.form["song_length"]
         input_release_date = request.form["release_date"]
-        query = "INSERT INTO Songs (title, length, release_date) VALUES (%s, %s, %s)"
+        query = "INSERT INTO Songs (title, song_length, release_date) VALUES (%s, %s, %s)"
         cur = mysql.connection.cursor()
         cur.execute(query, (input_title, input_length, input_release_date))
         mysql.connection.commit()
@@ -249,9 +249,9 @@ def update_song(_id):
 
     if request.method == "POST":
         input_title = request.form["title"]
-        input_length = request.form["length"]
+        input_length = request.form["song_length"]
         input_release_date = request.form["release_date"]
-        query = "UPDATE Songs SET title=%s, length=%s, release_date=%s WHERE song_id=%s"
+        query = "UPDATE Songs SET title=%s, song_length=%s, release_date=%s WHERE song_id=%s"
         cur = mysql.connection.cursor()
         cur.execute(query, (input_title, input_length, input_release_date, _id))
         mysql.connection.commit()

@@ -5,9 +5,11 @@
 {%  endblock %}
 
 {%  block content %}
+            <form method="POST" id="addSong">
    <table>
-        <form method="POST" id="addSong">
+
             <tr>
+
         <th>title</th>
         <th>length</th>
         <th>release date</th>
@@ -15,14 +17,16 @@
 
             <tr>
                 <td><input type="text" name="title" placeholder="Song Title"></td>
-                <td><input type="text" name="length" placeholder="mm:ss"></td>
+                <td><input type="text" name="song_length" placeholder="mm:ss"></td>
                 <td><input type="date" name="release_date"></td>
 
             </tr>
 
 
-        </form>
-   </table>
 
-            <button><a href="{{ url_for('songs') }}">Add Song</a></button>
+   </table>
+                       <button>Add Song</button>
+        </form>
+
+
 {%  endblock %}

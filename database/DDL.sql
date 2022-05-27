@@ -67,7 +67,7 @@ DROP TABLE IF EXISTS `Songs` ;
 CREATE TABLE IF NOT EXISTS `Songs` (
   `song_id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
-  `length` TIME NULL,
+  `length` VARCHAR(255) NULL,
   `release_date` DATE NULL,
   `album_id` INT NULL,
   PRIMARY KEY (`song_id`),
