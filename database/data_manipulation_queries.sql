@@ -16,7 +16,7 @@ INSERT INTO playlists (playlist_id, created_at, title, user_id)
 VALUES (:playlist_id, :created_at, :title, :user_id)
 
 -- add song
-INSERT INTO songs (song_id, title, length, release_date, album_id)
+INSERT INTO songs (song_id, title, song_length, release_date, album_id)
 VALUES (:song_id, :title, :length, :release_date, :album_id)
 
 -- READ
@@ -36,7 +36,7 @@ SELECT playlist_id, created_at, title, user_id FROM playlists
 ORDER BY title ASC;
 
 -- get all Song IDs and Song info
-SELECT song_id, title, length, release_date, album_id FROM songs
+SELECT song_id, title, song_length, release_date, album_id FROM songs
 ORDER BY title ASC;
 
 -- UPDATE
@@ -52,7 +52,7 @@ WHERE user_id= :user_id_input
 
 -- update artist
 UPDATE artists
-SET title= :title_input, length= length_input, release_date= :release_date_input
+SET title= :title_input, song_length= length_input, release_date= :release_date_input
 WHERE artist_id= :artist_id_input
 
 -- update playlist
@@ -62,7 +62,7 @@ WHERE playlist_id= :playlist_id_input
 
 -- update song
 UPDATE songs
-SET title= :title_input, length= :length_input, release_date= :release_date_input
+SET title= :title_input, song_length= :length_input, release_date= :release_date_input
 WHERE song_id= :song_id_input
 
 -- DELETE
