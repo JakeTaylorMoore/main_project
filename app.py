@@ -215,11 +215,15 @@ def delete_album(id):
 
 @app.route('/songs')
 def songs():
-    query = f"SELECT * FROM Songs;"
+    query_one = f"SELECT * FROM Songs;"
     cur = mysql.connection.cursor()
-    cur.execute(query)
+    cur.execute(query_one)
     data = cur.fetchall()
-    return render_template("songs.j2", Songs=data)
+    query_two = f"SELECT * FROM Artists_Songs;"
+    cur = mysql.connection.cursor()
+    cur.execute(query_two)
+    Artists_Songs = cur.fetchall()
+    return render_template("songs.j2", Songs=data, Artists_Songs=Artists_Songs)
 
 
 @app.route('/add-song', methods=['POST', 'GET'])
@@ -326,9 +330,54 @@ def delete_playlist(id):
     return redirect('/playlists')
 
 
+@app.route('/add-artist-song', methods=['POST', 'GET'])
+def add_artist_song():
+    if request.method == "GET":
+        return render_template('add-artist-song.j2')
+
+    if request.method == "POST":
+        input_artist_id = request.form["artist_id"]
+        input_song_id = request.form["song_id"]
+        query = "INSERT INTO Artists_Songs (artist_id, song_id) VALUES (%s, %s)"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (input_artist_id, input_song_id))
+        mysql.connection.commit()
+
+        return redirect('/songs')
+
+
+@app.route('/update-artist-song/<int:_id>', methods=['POST', 'GET'])
+def update_artist_song(_id):
+    artist_song_query = f"SELECT * FROM Artists_Songs"
+    cur = mysql.connection.cursor()
+    cur.execute(artist_song_query)
+    artist_song = [artist_song for artist_song in cur.fetchall() if artist_song["artist_song_id"] == _id]
+    artist_song = artist_song[0]
+
+    if request.method == "POST":
+        input_artist_id = request.form["artist_id"]
+        input_song_id = request.form["song_id"]
+        query = "UPDATE Artists_Songs SET artist_id=%s, song_id=%s WHERE artist_song_id=%s"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (input_artist_id, input_song_id, _id))
+        mysql.connection.commit()
+        return redirect('/songs')
+
+    return render_template('update-artist-song.j2', Artist_Song=artist_song)
+
+
+@app.route('/delete-artist-song/<int:id>')
+def delete_artist_song(id):
+    query = "DELETE FROM Artists_Songs WHERE artist_song_id = %s;"
+    cur = mysql.connection.cursor()
+    cur.execute(query, (id,))
+    mysql.connection.commit()
+    return redirect('/songs')
+
+
 @app.context_processor
 def inject_today_date():
-    return{'today_date': datetime.date.today()}
+    return {'today_date': datetime.date.today()}
 
 
 if __name__ == '__main__':

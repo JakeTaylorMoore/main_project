@@ -1,0 +1,31 @@
+{%  extends 'main.j2' %}
+
+{% block header %}
+    <h1>{% block title %} Update Artist Song {% endblock %}</h1>
+{%  endblock %}
+
+{%  block content %}
+       <form method="POST" id="UpdateArtistSong">
+ <table>
+           <input type="hidden" name="Artist_Song_id" id="updateArtistSongID" value="1">
+
+{#   <fieldset class="fields">#}
+
+           <tr>
+        <th><label>Artist Song ID: </label></th>
+        <th><label>Artist ID:</label></th>
+        <th><label>Song ID: </label></th>
+
+    </tr>
+
+<tr>
+           <td>{{ Artist_Song["artist_song_id"] }}</td>
+           <td><input type="number" name="artist_id" value="{{ Artist_Song['artist_id'] }}"></td>
+           <td><input type="number" name="song_id" value="{{  Artist_Song['song_id'] }}"></td>
+</tr>
+
+ </table>
+
+    <button>Update Artist Song</button>
+       </form>
+{%  endblock %}

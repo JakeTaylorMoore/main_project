@@ -1,0 +1,29 @@
+{%  extends 'main.j2' %}
+
+{% block header %}
+    <h1>{% block title %} Add Artist Song {% endblock %}</h1>
+{%  endblock %}
+
+{%  block content %}
+    <table>
+        <form method="POST" id="addArtistSong">
+
+
+
+<tr>
+        <th>Artist ID:</th>
+        <th>Song ID:</th>
+
+</tr>
+
+             <tr>
+                 <td><input type="number" name="artist_id" value=" "></td>
+                 <td><input type="number" name="song_id" placeholder=" "></td>
+             </tr>
+
+
+    </table>
+
+        <button>Add Artist Song</button>
+    </form>
+{%  endblock %}
