@@ -1,3 +1,8 @@
+# Much of the foundation of this website was built following the Flask Starter
+# Guide provided by Oregon State University for CS 340.
+# Date: 06/06/2022
+# https://github.com/osu-cs340-ecampus/flask-starter-app
+
 from flask import Flask, render_template, url_for, json, redirect, request
 import datetime
 from flask_mysqldb import MySQL
