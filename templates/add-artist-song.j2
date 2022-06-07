@@ -17,8 +17,19 @@
 </tr>
 
              <tr>
-                 <td><input type="number" name="artist_id" value=" "></td>
-                 <td><input type="number" name="song_id" placeholder=" "></td>
+
+            <td><select name="artist_id" id="artist_id">
+            <option value="0" selected>&nbsp;</option>
+             {% for artist_id in artist_ids %}
+                 <option value="{{ artist_id['artist_id'] }}"> {{ artist_id['artist_id'] }}</option>
+            {% endfor %}
+            </select></td>
+            <td><select name="song_id" id="song_id">
+            <option value="0" selected>&nbsp;</option>
+             {% for song_id in song_ids %}
+                 <option value="{{ song_id['song_id'] }}"> {{ song_id['song_id'] }}</option>
+            {% endfor %}
+            </select></td>
              </tr>
 
 

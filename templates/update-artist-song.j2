@@ -20,8 +20,25 @@
 
 <tr>
            <td>{{ Artist_Song["artist_song_id"] }}</td>
-           <td><input type="number" name="artist_id" value="{{ Artist_Song['artist_id'] }}"></td>
-           <td><input type="number" name="song_id" value="{{  Artist_Song['song_id'] }}"></td>
+            <td><select name="artist_id" id="artist_id">
+             {% for artist_id in artist_ids %}
+                 {% if artist_id["artist_id"] == Artist_Song["artist_id"] %}
+                     <option value="{{ artist_id['artist_id'] }}" selected> {{ artist_id['artist_id'] }}</option>
+                 {% else %}
+                     <option value="{{ artist_id['artist_id'] }}"> {{ artist_id['artist_id'] }}</option>
+                 {% endif %}
+            {% endfor %}
+            </select></td>
+            <td><select name="song_id" id="song_id">
+             {% for song_id in song_ids %}
+                 {% if song_id["song_id"] == Artist_Song["song_id"] %}
+                     <option value="{{ song_id['song_id'] }}" selected> {{ song_id['song_id'] }}</option>
+                 {% else %}
+                     <option value="{{ song_id['song_id'] }}"> {{ song_id['song_id'] }}</option>
+                 {% endif %}
+            {% endfor %}
+            </select></td>
+
 </tr>
 
  </table>

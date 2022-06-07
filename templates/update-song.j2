@@ -23,7 +23,15 @@
            <td><input type="text" name="title" value="{{ song['title'] }}"></td>
            <td><input type="text" name="song_length" value="{{ song['song_length'] }}"></td>
             <td><input type="date" name="release_date" value="{{ song['release_date'] }}"></td>
-            <td>{{ song["album_id"] }}</td>
+            <td><select name="album_id" id="album_id">
+             {% for album_id in album_ids %}
+                 {% if album_id["album_id"] == song["album_id"] %}
+                     <option value="{{ album_id['album_id'] }}" selected> {{ album_id['album_id'] }}</option>
+                 {% else %}
+                     <option value="{{ album_id['album_id'] }}"> {{ album_id['album_id'] }}</option>
+                 {% endif %}
+            {% endfor %}
+            </select></td>
    </tr>
 
  </table>

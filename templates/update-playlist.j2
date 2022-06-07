@@ -24,7 +24,15 @@
            <td>{{ playlist["playlist_id"] }}</td>
            <td><input type="date" name="created_at" value="{{ playlist['created_at'] }}"></td>
            <td><input type="text" name="title" value="{{ playlist['title'] }}"></td>
-           <td><input type="number" name="user_id" value="{{ playlist['user_id'] }}"></td>
+           <td><select name="user_id" id="user_id">
+             {% for user_id in user_ids %}
+                 {% if user_id["user_id"] == playlist["user_id"] %}
+                     <option value="{{ user_id['user_id'] }}" selected> {{ user_id['user_id'] }}</option>
+                 {% else %}
+                     <option value="{{ user_id['user_id'] }}"> {{ user_id['user_id'] }}</option>
+                 {% endif %}
+            {% endfor %}
+            </select></td>
        </tr>
 
 

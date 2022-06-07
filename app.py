@@ -229,15 +229,21 @@ def songs():
 @app.route('/add-song', methods=['POST', 'GET'])
 def add_song():
     if request.method == "GET":
-        return render_template('add-song.j2')
+        # Get album ids to send to add playlist for dropdown menu fks
+        album_id_query = f"SELECT album_id FROM Albums"
+        cur = mysql.connection.cursor()
+        cur.execute(album_id_query)
+        album_ids = cur.fetchall()
+        return render_template('add-song.j2', album_ids=album_ids)
 
     if request.method == "POST":
         input_title = request.form["title"]
         input_length = request.form["song_length"]
         input_release_date = request.form["release_date"]
-        query = "INSERT INTO Songs (title, song_length, release_date) VALUES (%s, %s, %s)"
+        input_album_id = request.form["album_id"]
+        query = "INSERT INTO Songs (title, length, release_date, album_id) VALUES (%s, %s, %s, %s)"
         cur = mysql.connection.cursor()
-        cur.execute(query, (input_title, input_length, input_release_date))
+        cur.execute(query, (input_title, input_length, input_release_date, input_album_id))
         mysql.connection.commit()
 
         return redirect('/songs')
@@ -251,17 +257,24 @@ def update_song(_id):
     song = [song for song in cur.fetchall() if song["song_id"] == _id]
     song = song[0]
 
+    # Get album ids to send to add playlist for dropdown menu fks
+    album_id_query = f"SELECT album_id FROM Albums"
+    cur = mysql.connection.cursor()
+    cur.execute(album_id_query)
+    album_ids = cur.fetchall()
+
     if request.method == "POST":
         input_title = request.form["title"]
         input_length = request.form["song_length"]
         input_release_date = request.form["release_date"]
-        query = "UPDATE Songs SET title=%s, song_length=%s, release_date=%s WHERE song_id=%s"
+        input_album_id = request.form["album_id"]
+        query = "UPDATE Songs SET title=%s, length=%s, release_date=%s, album_id=%s WHERE song_id=%s"
         cur = mysql.connection.cursor()
-        cur.execute(query, (input_title, input_length, input_release_date, _id))
+        cur.execute(query, (input_title, input_length, input_release_date, input_album_id, _id))
         mysql.connection.commit()
         return redirect('/songs')
 
-    return render_template('update-song.j2', song=song)
+    return render_template('update-song.j2', song=song, album_ids=album_ids)
 
 
 @app.route('/delete-song/<int:id>')
@@ -286,7 +299,12 @@ def playlists():
 @app.route('/add-playlist', methods=['POST', 'GET'])
 def add_playlist():
     if request.method == "GET":
-        return render_template('add-playlist.j2')
+        # Get user ids to send to add playlist for dropdown menu fks
+        user_id_query = f"SELECT user_id FROM Users"
+        cur = mysql.connection.cursor()
+        cur.execute(user_id_query)
+        user_ids = cur.fetchall()
+        return render_template('add-playlist.j2', user_ids=user_ids)
 
     if request.method == "POST":
         input_created_at = request.form["created_at"]
@@ -308,6 +326,12 @@ def update_playlist(_id):
     playlist = [playlist for playlist in cur.fetchall() if playlist["playlist_id"] == _id]
     playlist = playlist[0]
 
+    # Get user ids to send to add playlist for dropdown menu fks
+    user_id_query = f"SELECT user_id FROM Users"
+    cur = mysql.connection.cursor()
+    cur.execute(user_id_query)
+    user_ids = cur.fetchall()
+
     if request.method == "POST":
         input_created_at = request.form["created_at"]
         input_title = request.form["title"]
@@ -318,7 +342,7 @@ def update_playlist(_id):
         mysql.connection.commit()
         return redirect('/playlists')
 
-    return render_template('update-playlist.j2', playlist=playlist)
+    return render_template('update-playlist.j2', playlist=playlist, user_ids=user_ids)
 
 
 @app.route('/delete-playlist/<int:id>')
@@ -333,7 +357,17 @@ def delete_playlist(id):
 @app.route('/add-artist-song', methods=['POST', 'GET'])
 def add_artist_song():
     if request.method == "GET":
-        return render_template('add-artist-song.j2')
+        # Get song ids and artist ids to send to add artist for dropdown menu fks
+        song_id_query = f"SELECT song_id FROM Songs"
+        cur = mysql.connection.cursor()
+        cur.execute(song_id_query)
+        song_ids = cur.fetchall()
+
+        artist_id_query = f"SELECT artist_id FROM Artists"
+        cur = mysql.connection.cursor()
+        cur.execute(artist_id_query)
+        artist_ids = cur.fetchall()
+        return render_template('add-artist-song.j2', song_ids=song_ids, artist_ids=artist_ids)
 
     if request.method == "POST":
         input_artist_id = request.form["artist_id"]
@@ -354,6 +388,18 @@ def update_artist_song(_id):
     artist_song = [artist_song for artist_song in cur.fetchall() if artist_song["artist_song_id"] == _id]
     artist_song = artist_song[0]
 
+    # Get song ids and artist ids to send to update artist for dropdown menu fks
+    song_id_query = f"SELECT song_id FROM Songs"
+    cur = mysql.connection.cursor()
+    cur.execute(song_id_query)
+    song_ids = cur.fetchall()
+
+    artist_id_query = f"SELECT artist_id FROM Artists"
+    cur = mysql.connection.cursor()
+    cur.execute(artist_id_query)
+    artist_ids = cur.fetchall()
+
+
     if request.method == "POST":
         input_artist_id = request.form["artist_id"]
         input_song_id = request.form["song_id"]
@@ -363,7 +409,7 @@ def update_artist_song(_id):
         mysql.connection.commit()
         return redirect('/songs')
 
-    return render_template('update-artist-song.j2', Artist_Song=artist_song)
+    return render_template('update-artist-song.j2', Artist_Song=artist_song, song_ids=song_ids, artist_ids=artist_ids)
 
 
 @app.route('/delete-artist-song/<int:id>')

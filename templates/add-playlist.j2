@@ -15,10 +15,16 @@
 
 </tr>
 
-             <tr>
-                 <td><input type="date" name="created_at" value="{{ today_date }}"></td>
-                 <td><input type="text" name="title" placeholder="playlist title"></td>
-                 <td><input type="number" name="user_id" placeholder="User ID"></td>
+         <tr>
+             <td><input type="date" name="created_at" value="{{ today_date }}"></td>
+             <td><input type="text" name="title" placeholder="playlist title"></td>
+             <td><select name="user_id" id="user_id">
+               <option value="0" selected>&nbsp;</option>
+                {% for user_id in user_ids %}
+                    <option value="{{ user_id['user_id'] }}"> {{ user_id['user_id'] }}</option>
+                {% endfor %}
+                </select>
+        </td>
 
 
 

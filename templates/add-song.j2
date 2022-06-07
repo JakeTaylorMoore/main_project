@@ -13,12 +13,19 @@
         <th>title</th>
         <th>length</th>
         <th>release date</th>
+        <th>album id</th>
 </tr>
 
             <tr>
                 <td><input type="text" name="title" placeholder="Song Title"></td>
                 <td><input type="text" name="song_length" placeholder="mm:ss"></td>
                 <td><input type="date" name="release_date"></td>
+                <td><select name="album_id" id="album_id">
+                    <option value="0" selected>&nbsp;</option>
+                     {% for album_id in album_ids %}
+                         <option value="{{ album_id['album_id'] }}"> {{ album_id['album_id'] }}</option>
+                    {% endfor %}
+                </select></td>
 
             </tr>
 
